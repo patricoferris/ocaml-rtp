@@ -1,0 +1,24 @@
+{1 Real-time Transport Control Protocol}
+
+{2 Protocol Overiew}
+
+The real-time transport protocol (RTCP) is explained in {{: https://datatracker.ietf.org/doc/html/rfc3550#section-6} section 6 of rfc3550}.
+
+As the name suggests it is the controlling mechanism used for {! Rtp}, packets are periodically transmitted to all participants in the session
+using the same mechanism as the data packets, so the underlying protocol MUST provide multiplexing. 
+
+For a blow-by-blow account of RTCP be sure to read the RFC, but in the spirit of providing insight, there are four main functions RTCP provides: 
+
+- The primary functionality is to provide insight into the quality of the RTP data distribution.
+- RTCP carries a canonical name ([CNAME]) that allows people to keep track of each participant.
+- Controlling the rate of packet sending in order to scale to larger groups
+
+{3 Packets}
+
+RTCP packets come in a few different flavours, and although they can be of variables length, they MUST end on 32-bit boundaries. This makes
+them stackable so we can concatenate them without adding and extra-separation logic.
+
+{2 Modules}
+
+- {! Rtcp.Packet}
+- {! Rtcp.Sender_report}

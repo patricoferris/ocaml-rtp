@@ -1,0 +1,9 @@
+(library
+ (name rtcp)
+ (public_name rtcp)
+ (libraries rtp cstruct))
+
+(documentation
+ (package rtcp))
+
+(include_subdirs unqualified)

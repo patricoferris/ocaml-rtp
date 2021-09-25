@@ -1,0 +1,8 @@
+(library
+ (name rtp)
+ (public_name rtp)
+ (libraries fmt cstruct)
+ (preprocess
+  (pps ppx_cstruct)))
+
+(include_subdirs unqualified)
