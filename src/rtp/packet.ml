@@ -72,7 +72,7 @@ let of_cstruct buff =
       let extension = Cstruct.sub buff (ext_off + 4) (4 * ext_length) in
       let payload_off = ext_off + 4 + (4 * ext_length) in
       let payload =
-        Cstruct.sub buff payload_off (Cstruct.len buff - payload_off)
+        Cstruct.sub buff payload_off (Cstruct.length buff - payload_off)
       in
       {
         header =
@@ -108,7 +108,7 @@ let of_cstruct buff =
             csrc_srcs;
             extension = None;
           };
-        payload = Cstruct.sub buff payload_off (Cstruct.len buff - payload_off);
+        payload = Cstruct.sub buff payload_off (Cstruct.length buff - payload_off);
       }
 
 let header_into_cstruct (h : header) buff =
@@ -139,7 +139,7 @@ let to_cstruct (t : t) =
       let ext_header =
         let ext_buff = Cstruct.create 4 in
         Cstruct.BE.set_uint16 ext_buff 0 profile;
-        Cstruct.(BE.set_uint16 ext_buff 2 (len extension / 4));
+        Cstruct.(BE.set_uint16 ext_buff 2 (Cstruct.length extension / 4));
         ext_buff
       in
       buff <+> ext_header <+> extension <+> t.payload
