@@ -20,7 +20,8 @@
   "A pure OCaml implementation of the Real-time Transport Protocol")
  (depends
   (alcotest :with-test)
-  cstruct))
+  cstruct
+  ppx_cstruct))
 
 (package
  (name rtcp)
